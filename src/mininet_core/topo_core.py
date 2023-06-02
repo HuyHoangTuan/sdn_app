@@ -34,4 +34,4 @@ class Topology(Topo):
             self.addLink(first_switch, second_switch)
 
 
-topos = { 'tp': ( lambda: Topology() ) }
+# topos = { 'tp': ( lambda: Topology() ) }
