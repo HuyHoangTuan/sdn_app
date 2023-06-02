@@ -32,6 +32,6 @@ class Topology(Topo):
             first_switch = self._switches[_input[0]-1]
             second_switch = self._switches[_input[1]-1]
             self.addLink(first_switch, second_switch)
-            
-        
-            
+
+
+topos = { 'tp': ( lambda: Topology() ) }
