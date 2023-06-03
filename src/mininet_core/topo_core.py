@@ -11,8 +11,10 @@ class Topology(Topo):
         numSwitch = 10
         for i in range(0, numSwitch):
             switch = self.addSwitch('sw{}'.format(i+1))
-            self._hosts.append(self.addHost('h{}'.format(i+1)))
+            host = self.addHost('h{}'.format(i+1))
+            self._hosts.append(host)
             self._switches.append(switch)
+            self.addLink(host, switch)
             
         self._input = [
             [1, 2],
@@ -35,8 +37,7 @@ class Topology(Topo):
             second_switch = self._switches[_input[1]-1]
             self.addLink(first_switch, second_switch)
         
-        for i in range(0, numSwitch):
-            self.addLink(self._switches[i], self._hosts[i])
+    
 
 
 topos = { 'tp': ( lambda: Topology() ) }
