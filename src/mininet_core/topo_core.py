@@ -7,9 +7,11 @@ from mininet.log import setLogLevel
 class Topology(Topo):
     def build(self):
         self._switches = []
+        self._hosts = []
         numSwitch = 10
         for i in range(0, numSwitch):
             switch = self.addSwitch('sw{}'.format(i+1))
+            self._hosts.append(self.addHost('h{}'.format(i+1)))
             self._switches.append(switch)
             
         self._input = [
@@ -32,6 +34,9 @@ class Topology(Topo):
             first_switch = self._switches[_input[0]-1]
             second_switch = self._switches[_input[1]-1]
             self.addLink(first_switch, second_switch)
+        
+        for i in range(0, numSwitch):
+            self.addLink(self._switches[i], self._hosts[i])
 
 
 topos = { 'tp': ( lambda: Topology() ) }
