@@ -11,7 +11,12 @@ class Topology(Topo):
         numSwitch = 10
         for i in range(0, numSwitch):
             switch = self.addSwitch('sw{}'.format(i+1))
-            host = self.addHost('h{}'.format(i+1))
+            macAddr = '00:00:00:00:00:'
+            if i+1 < 10:
+                macAddr += '0' + str(i+1)
+            else:
+                macAddr += str(i+1)
+            host = self.addHost('h{}'.format(i+1), mac= macAddr)
             self._hosts.append(host)
             self._switches.append(switch)
             self.addLink(host, switch)
