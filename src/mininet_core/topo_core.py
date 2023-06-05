@@ -42,6 +42,8 @@ class Topology(Topo):
             second_switch = self._switches[_input[1]-1]
             self.addLink(first_switch, second_switch)
         
+        self.ping(self._host, timeout = 1)
+        
     
 
 
